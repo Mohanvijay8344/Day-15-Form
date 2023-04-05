@@ -1,0 +1,20 @@
+*{
+  background-image: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
+
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.form label{
+  font-weight: bold;
+}
+
+.form button:hover{
+  cursor: pointer;
+  background-color: aqua;
+}

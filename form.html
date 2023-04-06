@@ -32,16 +32,17 @@
       
       <label for="gender">Gender: <label for="male">Male</label><input type="radio" id="female" name="gender" value="female"><label for="female">Female</label><input type="radio" id="male" name="gender" value="male" required></label>
 
+
       <label for="food">Food:
-        <input type="checkbox" id="food1" name="food[]" value="food1">
+        <input type="checkbox" id="food1" name="food[]" value="Idly">
         <label for="food1">Idly</label>
-        <input type="checkbox" id="food2" name="food[]" value="food2">
+        <input type="checkbox" id="food2" name="food[]" value="Poori">
         <label for="food2">Poori</label>
-        <input type="checkbox" id="food3" name="food[]" value="food3">
+        <input type="checkbox" id="food3" name="food[]" value="Dosa">
         <label for="food3">Dosa</label>
-        <input type="checkbox" id="food4" name="food[]" value="food4">
+        <input type="checkbox" id="food4" name="food[]" value="Chappathi">
         <label for="food4">Chappathi</label>
-        <input type="checkbox" id="food5" name="food[]" value="food5">
+        <input type="checkbox" id="food5" name="food[]" value="Pongal">
         <label for="food5">Pongal</label>
     </label>
 
@@ -88,7 +89,7 @@
               const formData = new FormData(event.target);
           
               // Extract the food values from the form data
-              const foodValues = formData.getAll('food[]');
+              const foodValues = formData.getAll("food[]");
           
               // Make sure at least 2 foods are selected
               if (foodValues.length < 2) {

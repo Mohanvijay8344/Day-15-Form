@@ -1,37 +1,62 @@
-let restcountries = async () => {
-  try {
-    let response = await fetch("https://restcountries.com/v3.1/all");
-    let data = await response.json();
-    console.log(data);
-    data.forEach((ele) => {
-      // console.log(ele.name.common)
-      // let card=document.createElement("div");
-      document.body.innerHTML += `
-        <div class="card card-header card-body  t-img container">
-        <h5 class="card-title">${ele.name.common}</h5>
-  <div class="t-img"><img src="${ele.flags.png}" class="card-img-top"></div>
-  <div class="card-body">
-    <p class="card-text">
-    <div>Capital: ${ele.capital}</div>
-    <div>Region: ${ele.region}</div>
-    <div>Country Code: ${ele.cca3}</div>
-    </p>
-    <a href="https://api.openweathermap.org/data/2.5/weather?q=${ele.name.common}&APPID=f6d5d552eecbaa6920d83da0804e5a44" class="btn btn-primary" target="_blank">Click for weather</a>
-  </div>
-</div>`;
-      let weather = async () => {
-        let response1 = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${ele.name.common}&APPID=f6d5d552eecbaa6920d83da0804e5a44`
-        );
-        let data1 = await response1.json();
-        console.log(data1);
-        // console.log(data1.weather[0].main);
-      };
-
-      weather();
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
-restcountries();
+            // Get the form element and add a submit event listener
+            const form = document.querySelector('#myForm');
+            form.addEventListener('submit', handleSubmit);
+          
+            // Get the table element and tbody element
+            const table = document.querySelector('#myTable');
+            const tbody = table.querySelector('tbody');
+          
+            // Define a function to handle form submission
+            function handleSubmit(event) {
+              // Prevent the default form submission behavior
+              event.preventDefault();
+          
+              // Get the form data
+              const formData = new FormData(event.target);
+          
+              // Extract the food values from the form data
+              const foodValues = formData.getAll("food[]");
+          
+              // Make sure at least 2 foods are selected
+              if (foodValues.length < 2) {
+                alert('Please choose at least 2 foods.');
+                return;
+              }
+          
+              // Create a new table row and cells
+              const row = document.createElement('tr');
+              const firstNameCell = document.createElement('td');
+              const lastNameCell = document.createElement('td');
+              const addressCell = document.createElement('td');
+              const pinCodeCell = document.createElement('td');
+              const genderCell = document.createElement('td');
+              const foodCell = document.createElement('td');
+              const stateCell = document.createElement('td');
+              const countryCell = document.createElement('td');
+          
+              // Set the text content of the cells to the form data
+              firstNameCell.textContent = formData.get('firstName');
+              lastNameCell.textContent = formData.get('lastName');
+              addressCell.textContent = formData.get('address');
+              pinCodeCell.textContent = formData.get('pinCode');
+              genderCell.textContent = formData.get('gender');
+              foodCell.textContent = foodValues.join(', ');
+              stateCell.textContent = formData.get('state');
+              countryCell.textContent = formData.get('country');
+          
+              // Append the cells to the row
+              row.appendChild(firstNameCell);
+              row.appendChild(lastNameCell);
+              row.appendChild(addressCell);
+              row.appendChild(pinCodeCell);
+              row.appendChild(genderCell);
+              row.appendChild(foodCell);
+              row.appendChild(stateCell);
+              row.appendChild(countryCell);
+          
+              // Append the row to the tbody
+              tbody.appendChild(row);
+          
+              // Clear the form fields
+              form.reset();
+            }
